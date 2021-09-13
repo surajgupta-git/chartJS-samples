@@ -9,23 +9,30 @@
     <!-- import chart JS script -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
+
+
 </head>
 <body>
+    <h1> A Bar chart created using Chart.JS</h1>
+    <p>Developed by suraj</p>
+
     <!-- create a division [container for holding the chart] in the html DOM  -->
     <div>
         <canvas id="myChart" width="70" height="20"></canvas>
     </div>
 
     <script>
-        //setup labels and 
+        //setup labels and datasets that constitute data
         //data={labels,datasets}
+        
         const data = {
-        labels: ['classA','classB','classC','classD','classE','classF','classG'],
+        labels: ['class A','class B','class C','class D','class E','class F','class G'],
         datasets: [{
-            data: [44, 10, 5, 2, 20, 30, 45],
+            data: [44, 10, 15,15, 20, 30, 45],
             label: 'Boys count',
-            backgroundColor: ['black'],
-            borderColor: 'rgba(139, 99, 132)', // array can be mentioned here too
+            backgroundColor:'#ff6384',
+            borderColor: 'rgb(156, 99, 12)', // array can be mentioned here too
             borderWidth: 1,
             hoverBorderWidth:5 },{
             data: [12,24,12,52,12,32,12],
@@ -34,33 +41,35 @@
             borderColor: 'rgba(139, 99, 132)', // array can be mentioned here too
             borderWidth: 1,
             hoverBorderWidth:5
-
             }]
         };
+        console.log(data);
+
         // config={type,data,options}
         const config = {
-        type: 'bar',     //line, bar, horizontal bar, pie, doughnut, radar, polarArea
+        type: 'line',     //line, bar, horizontal bar, pie, doughnut, radar, polarArea
         data: data,
         options: {
-            title:{
-                display:true,
-                text:"sample chart",
-                fontSize:25
-            },
-            scales:{
-                y: {max: 60,min: 0,ticks: {stepSize: 5}}},
+            scales:{ y: {max: 100,min: 0,ticks: {stepSize: 10}} },
             plugins: {
                 legend: {
                     display: true,
                     position:'bottom',
                     labels: {color: 'orange', font:{size:32,family:'Broadway'}}
-            }
             },
+                title:{
+                    display:true,
+                    text:"sample chart",
+                    fontSize:25
+                },
             layout:{},
-            tooltipd:{}
+            tooltipd:{
+
+            }
+        }
         }
         };
-        
+
 
         const chartRef=document.getElementById('myChart').getContext('2d');
 
@@ -69,6 +78,7 @@
 
         //create the chart
         var myChart = new Chart(chartRef,config);
+
       </script>
 </body>
 </html>

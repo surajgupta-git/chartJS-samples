@@ -15,7 +15,7 @@
 
     <!-- create a division [container for holding the chart] in the html DOM  -->
     <div>
-        <canvas id="myChart" width="25" height="12"></canvas>
+        <canvas id="myChart" width="25" height="20"></canvas>
     </div>
 
 
@@ -41,12 +41,12 @@
         };
  
         const config = {
-        type: 'line',    //line, bar, horizontal bar, pie, doughnut, radar, polarArea
+        type: 'bar',    //line, bar, horizontal bar, pie, doughnut, radar, polarArea
         data: data,
         options: {
             title:{},
             scales: {
-                y: {max: 20,min: 0,ticks: {stepSize: 0.1}}},
+                y: {max:15,min: 13.75,ticks: {stepSize: 0.05}}},
             legend:{},
             layout:{},
             tooltipd:{}
