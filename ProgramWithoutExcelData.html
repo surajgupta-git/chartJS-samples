@@ -11,29 +11,33 @@
 
 </head>
 <body>
-   
-
-
-    <!-- create a container for your chart in the html  -->
+    <!-- create a division [container for holding the chart] in the html DOM  -->
     <div>
         <canvas id="myChart" width="70" height="20"></canvas>
     </div>
 
-
     <script>
-        //setup labels and datasets
+        //setup labels and 
+        //data={labels,datasets}
         const data = {
-        labels: ['January','February','March','April','May','June',],
+        labels: ['classA','classB','classC','classD','classE','classF','classG'],
         datasets: [{
-            data: [0, 10, 5, 2, 20, 30, 45],
-            label: 'sample dataset',
-            backgroundColor: ['red','#777','rgba(139, 99, 132)', 'yellow','red', 'green'],
+            data: [44, 10, 5, 2, 20, 30, 45],
+            label: 'Boys count',
+            backgroundColor: ['black'],
+            borderColor: 'rgba(139, 99, 132)', // array can be mentioned here too
+            borderWidth: 1,
+            hoverBorderWidth:5 },{
+            data: [12,24,12,52,12,32,12],
+            label: 'Girls count',
+            backgroundColor: ['green'],
             borderColor: 'rgba(139, 99, 132)', // array can be mentioned here too
             borderWidth: 1,
             hoverBorderWidth:5
-        }]
+
+            }]
         };
- 
+        // config={type,data,options}
         const config = {
         type: 'bar',     //line, bar, horizontal bar, pie, doughnut, radar, polarArea
         data: data,
@@ -43,21 +47,28 @@
                 text:"sample chart",
                 fontSize:25
             },
-            scales:{},
-            legend:{},
+            scales:{
+                y: {max: 60,min: 0,ticks: {stepSize: 5}}},
+            plugins: {
+                legend: {
+                    display: true,
+                    position:'bottom',
+                    labels: {color: 'orange', font:{size:32,family:'Broadway'}}
+            }
+            },
             layout:{},
             tooltipd:{}
         }
         };
+        
 
-        const ctx=document.getElementById('myChart').getContext('2d');
+        const chartRef=document.getElementById('myChart').getContext('2d');
 
         //Global Options
         //Chart.defaults.global.defaultFontColor = '#666';
 
         //create the chart
-        var myChart = new Chart(ctx,config);
-
+        var myChart = new Chart(chartRef,config);
       </script>
 </body>
 </html>

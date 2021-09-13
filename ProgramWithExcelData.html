@@ -10,34 +10,34 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
+
 <body>
-   
 
-
-    <!-- create a container for your chart in the html  -->
+    <!-- create a division [container for holding the chart] in the html DOM  -->
     <div>
         <canvas id="myChart" width="25" height="12"></canvas>
     </div>
 
 
     <script>
-        async function createChart(){
+        async function createChart()
+        {
 
-        const ctx=document.getElementById('myChart').getContext('2d');
-        const dataCaptured=await getData();
-        
-        //setup labels and datasets
-        const data = {
-        labels: dataCaptured.xval.sort(),
-        datasets: [{
-            data: dataCaptured.yval.sort(),
-            label: 'Temperature in celcius',
-            backgroundColor: 'green',
-            fill:false,
-            borderColor: 'rgba(139, 99, 132)', // array can be mentioned here too
-            borderWidth: 1,
-            hoverBorderWidth:1
-        }]
+            const ctx=document.getElementById('myChart').getContext('2d');
+            const dataCaptured=await getData();
+            
+            //setup labels and datasets
+            const data = {
+            labels: dataCaptured.xval.sort(),
+            datasets: [{
+                data: dataCaptured.yval.sort(),
+                label: 'Temperature in celcius',
+                backgroundColor: 'green',
+                fill:false,
+                borderColor: 'rgba(139, 99, 132)', // array can be mentioned here too
+                borderWidth: 1,
+                hoverBorderWidth:1
+            }]
         };
  
         const config = {
