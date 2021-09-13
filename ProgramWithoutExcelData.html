@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My sample chart</title>
+
+    <!-- import chart JS script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+   
+
+
+    <!-- create a container for your chart in the html  -->
+    <div>
+        <canvas id="myChart" width="70" height="20"></canvas>
+    </div>
+
+
+    <script>
+        //setup labels and datasets
+        const data = {
+        labels: ['January','February','March','April','May','June',],
+        datasets: [{
+            data: [0, 10, 5, 2, 20, 30, 45],
+            label: 'sample dataset',
+            backgroundColor: ['red','#777','rgba(139, 99, 132)', 'yellow','red', 'green'],
+            borderColor: 'rgba(139, 99, 132)', // array can be mentioned here too
+            borderWidth: 1,
+            hoverBorderWidth:5
+        }]
+        };
+ 
+        const config = {
+        type: 'bar',     //line, bar, horizontal bar, pie, doughnut, radar, polarArea
+        data: data,
+        options: {
+            title:{
+                display:true,
+                text:"sample chart",
+                fontSize:25
+            },
+            scales:{},
+            legend:{},
+            layout:{},
+            tooltipd:{}
+        }
+        };
+
+        const ctx=document.getElementById('myChart').getContext('2d');
+
+        //Global Options
+        //Chart.defaults.global.defaultFontColor = '#666';
+
+        //create the chart
+        var myChart = new Chart(ctx,config);
+
+      </script>
+</body>
+</html>

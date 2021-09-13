@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My sample chart</title>
+
+    <!-- import chart JS script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+   
+
+
+    <!-- create a container for your chart in the html  -->
+    <div>
+        <canvas id="myChart" width="25" height="12"></canvas>
+    </div>
+
+
+    <script>
+        async function createChart(){
+
+        const ctx=document.getElementById('myChart').getContext('2d');
+        const dataCaptured=await getData();
+        
+        //setup labels and datasets
+        const data = {
+        labels: dataCaptured.xval.sort(),
+        datasets: [{
+            data: dataCaptured.yval.sort(),
+            label: 'Temperature in celcius',
+            backgroundColor: 'green',
+            fill:false,
+            borderColor: 'rgba(139, 99, 132)', // array can be mentioned here too
+            borderWidth: 1,
+            hoverBorderWidth:1
+        }]
+        };
+ 
+        const config = {
+        type: 'line',    //line, bar, horizontal bar, pie, doughnut, radar, polarArea
+        data: data,
+        options: {
+            title:{},
+            scales: {
+                y: {max: 20,min: 0,ticks: {stepSize: 0.1}}},
+            legend:{},
+            layout:{},
+            tooltipd:{}
+        }
+        };
+
+        //Global Options
+        //Chart.defaults.global.defaultFontColor = '#666';
+
+        //create the chart
+        var myChart = new Chart(ctx,config);
+        }
+
+        async function getData()
+        {
+            const xval=[]
+            const yval=[]
+            const response = await fetch('annual_csv.csv');
+            const data = await response.text();
+            const rows=data.split('\n').slice(100,150);
+            rows.forEach(line => {
+                const row=line.split(',');
+                xval.push(parseInt(row[0]));
+                yval.push(parseFloat(row[1])+14);
+            });
+            return {xval,yval};
+        }
+        createChart();
+
+      </script>
+</body>
+</html>
